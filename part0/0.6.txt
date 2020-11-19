@@ -1,0 +1,19 @@
+title Exercise 0.6
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/new_note
+note left of browser: 
+The HTTP POST request body contains the 
+text data for the note. 
+end note
+server-->browser: 201
+note right of server:
+The response body contains the new note,
+with the date field populated and the 
+Content-type field populated as
+'application/json'
+end note
+
+note over browser:
+client application deserializes the
+json data, adds it to the notes array,
+and redraws the notes HTML elements.
