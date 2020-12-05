@@ -21,9 +21,10 @@ const Feedback = ({ good, neutral, bad, setGood, setNeutral, setBad }) => {
 
 const Stat = ({ text, value }) => {
   return (
-    <p>
-      {text}: {value}
-    </p>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   );
 };
 
@@ -35,12 +36,14 @@ const Statistics = ({ good, bad, neutral }) => {
     return (
       <div>
         <h1>statistics</h1>
-        <Stat text={'good'} value={good} />
-        <Stat text={'neutral'} value={neutral} />
-        <Stat text={'bad'} value={bad} />
-        <Stat text={'all'} value={total} />
-        <Stat text={'average'} value={avg} />
-        <Stat text={'positive'} value={(good / total) * 100} />
+        <table>
+          <Stat text={'good'} value={good} />
+          <Stat text={'neutral'} value={neutral} />
+          <Stat text={'bad'} value={bad} />
+          <Stat text={'all'} value={total} />
+          <Stat text={'average'} value={avg} />
+          <Stat text={'positive'} value={(good / total) * 100} />
+        </table>
       </div>
     );
   } else {
