@@ -5,23 +5,27 @@ const App = (props) => {
   const { anecdotes } = props;
 
   const [selected, setSelected] = useState(0);
-  const [votes, setVotes] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
+  const [votes, setVotes] = useState(anecdotes.map((a) => 0));
 
   const update = () => setSelected(Math.floor(Math.random() * anecdotes.length));
   const vote = () => {
-    const copy = { ...votes };
+    const copy = [...votes];
     copy[selected] += 1;
     setVotes(copy);
   };
 
+  const anecdoteOfDay = anecdotes[votes.indexOf(Math.max(...votes))];
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br></br>
       has {votes[selected]} votes
       <br></br>
       <button onClick={vote}>vote</button>
       <button onClick={update}>next anecdote</button>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdoteOfDay}</p>
     </div>
   );
 };
