@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const App = (props) => {
-  const [selected, setSelected] = useState(0);
+  const { anecdotes } = props;
 
-  const update = () => setSelected(Math.floor(Math.random() * props.anecdotes.length));
+  const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
+
+  const update = () => setSelected(Math.floor(Math.random() * anecdotes.length));
+  const vote = () => {
+    const copy = { ...votes };
+    copy[selected] += 1;
+    setVotes(copy);
+  };
 
   return (
     <div>
-      {props.anecdotes[selected]}
+      {anecdotes[selected]}
       <br></br>
+      has {votes[selected]} votes
+      <br></br>
+      <button onClick={vote}>vote</button>
       <button onClick={update}>next anecdote</button>
     </div>
   );
